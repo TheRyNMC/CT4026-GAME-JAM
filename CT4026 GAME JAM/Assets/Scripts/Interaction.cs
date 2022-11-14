@@ -10,14 +10,16 @@ public class Interaction : MonoBehaviour {
     float pointerInputValue;
     bool fire;
     private new Camera camera;
-    private GameObject dropdown;
-
+    [SerializeField]    private GameObject dropdown;
+    [SerializeField] private GameObject tower;
+    RaycastHit hit;
     private void Awake() {
         playersInputs.action.performed += context => pointerInputValue = context.action.ReadValue<float>();
     }
     private void Start() {
         camera = Camera.main;
-        dropdown = GameObject.Find("Dropdown");
+        //dropdown = GameObject.Find("Dropdown");
+        //tower = GameObject.Find("SingleFireTurret");
         dropdown.SetActive(false);
     }
     void Update() {
@@ -31,14 +33,17 @@ public class Interaction : MonoBehaviour {
     }
 
     public void HandlingData(int val) {
-        if (val == 0) {
-            //tower will spawn
+        if (val == 1) {
+            GameObject newTower = Instantiate(tower, hit.transform.position, Quaternion.identity);
+            tower.transform.position = hit.transform.position + new Vector3 (1f,0f,1f);
+            Cursor.lockState = CursorLockMode.Locked;
+            dropdown.SetActive(false);
         }
     }
-
+    
     void Fire() {
         fire = true;
-        RaycastHit hit;
+        
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, 7f)) {
             Debug.Log("Shot " + hit.transform.name);
             if (hit.transform.CompareTag("PlaneA")) {
