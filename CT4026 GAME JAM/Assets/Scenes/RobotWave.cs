@@ -17,13 +17,11 @@ public class RobotWave : MonoBehaviour
 
     IEnumerator RobotSpawner()
     {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100000; i++) {
             yield return new WaitForSeconds(3f);
             GameObject newEnemy = Instantiate(robot);
             _robotMovement = newEnemy.GetComponent<EnemyMovement>();
             StartCoroutine(_robotMovement.EnemySteps());
-            _robotMovement.numberRobot = numberInc;
-            numberInc++;
         }
     }
 

@@ -7,7 +7,6 @@ public class EnemyMovement : MonoBehaviour
     private float stepLength = 0.03f;
     private float stepInterval = 0.01f;
     public float health = 200;
-    public int numberRobot;
 
 
     public IEnumerator EnemySteps()
