@@ -10,7 +10,7 @@ public class Interaction : MonoBehaviour {
     float pointerInputValue;
     bool fire;
     private new Camera camera;
-    [SerializeField]    private GameObject dropdown;
+    [SerializeField] private Dropdown dropdown;
     [SerializeField] private GameObject tower;
     RaycastHit hit;
     private void Awake() {
@@ -20,7 +20,7 @@ public class Interaction : MonoBehaviour {
         camera = Camera.main;
         //dropdown = GameObject.Find("Dropdown");
         //tower = GameObject.Find("SingleFireTurret");
-        dropdown.SetActive(false);
+        dropdown.gameObject.SetActive(false);
     }
     void Update() {
         if (pointerInputValue == 1) {
@@ -32,29 +32,31 @@ public class Interaction : MonoBehaviour {
         }
     }
 
-    public void HandlingData(int val) {
-        if (val == 1) {
+    public void HandlingData() {
+        if (dropdown.value == 1) {
             GameObject newTower = Instantiate(tower, hit.transform.position + new Vector3(2.5f, 0f, 2.5f), Quaternion.identity);
             Cursor.lockState = CursorLockMode.Locked;
-            dropdown.SetActive(false);
+            dropdown.gameObject.SetActive(false);
         }
     }
-    
+
     void Fire() {
         fire = true;
-        
+
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, 7f)) {
             Debug.Log("Shot " + hit.transform.name);
             if (hit.transform.CompareTag("PlaneA")) {
-                dropdown.SetActive(true);
+                dropdown.gameObject.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
-                HandlingData(0);
+            } 
+            else if (hit.transform.CompareTag("PlaneB")) {
+                dropdown.gameObject.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
             }
-
-
+            
         }
+
+
+
     }
-    
-
-
 }
