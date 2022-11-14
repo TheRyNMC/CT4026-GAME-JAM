@@ -38,11 +38,14 @@ public class Interaction : MonoBehaviour {
             Cursor.lockState = CursorLockMode.Locked;
             dropdown.gameObject.SetActive(false);
         }
+        else if (dropdown.value == 2) {
+            dropdown.gameObject.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     void Fire() {
         fire = true;
-
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, 7f)) {
             Debug.Log("Shot " + hit.transform.name);
             if (hit.transform.CompareTag("PlaneA")) {
@@ -55,8 +58,5 @@ public class Interaction : MonoBehaviour {
             }
             
         }
-
-
-
     }
 }

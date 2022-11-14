@@ -1609,9 +1609,7 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Spawn Turret
       m_Image: {fileID: 0}
-    - m_Text: Option B
-      m_Image: {fileID: 0}
-    - m_Text: Option C
+    - m_Text: Exit
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
