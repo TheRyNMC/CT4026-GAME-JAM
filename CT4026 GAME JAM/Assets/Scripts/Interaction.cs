@@ -34,8 +34,7 @@ public class Interaction : MonoBehaviour {
 
     public void HandlingData(int val) {
         if (val == 1) {
-            GameObject newTower = Instantiate(tower, hit.transform.position, Quaternion.identity);
-            tower.transform.position = hit.transform.position + new Vector3 (1f,0f,1f);
+            GameObject newTower = Instantiate(tower, hit.transform.position + new Vector3(2.5f, 0f, 2.5f), Quaternion.identity);
             Cursor.lockState = CursorLockMode.Locked;
             dropdown.SetActive(false);
         }
