@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class NewBehaviourScript : MonoBehaviour
-{
+public class Interaction : MonoBehaviour {
     [SerializeField]
     private InputActionReference playersInputs;
     float pointerInputValue;
